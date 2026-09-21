@@ -14,3 +14,5 @@ An autonomous, human-in-the-loop ETL migration agent designed to ingest messy HR
 4. **Human Review:** A consultant manually resolves the ambiguity via a structured JSON interface.
 5. **Deterministic ETL:** Pandas executes rigorous normalization, deduplication, and validation.
 6. **Audit & Upload:** Clean data is pushed to a mock API, generating a granular JSON audit trail.
+## UI Preview
+![Enterprise HCM Data Agent UI](Screenshot%202026-09-21%20130504.png)
