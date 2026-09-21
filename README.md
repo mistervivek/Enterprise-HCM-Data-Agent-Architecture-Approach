@@ -14,10 +14,3 @@ An autonomous, human-in-the-loop ETL migration agent designed to ingest messy HR
 4. **Human Review:** A consultant manually resolves the ambiguity via a structured JSON interface.
 5. **Deterministic ETL:** Pandas executes rigorous normalization, deduplication, and validation.
 6. **Audit & Upload:** Clean data is pushed to a mock API, generating a granular JSON audit trail.
-
-## Local Setup Instructions
-
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/yourusername/hcm-data-agent.git](https://github.com/yourusername/hcm-data-agent.git)
-   cd hcm-data-agent
