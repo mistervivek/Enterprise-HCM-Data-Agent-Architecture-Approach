@@ -1,0 +1,7 @@
+Fname,Lname,Email_Address,Phone_No,Hire_Date,Stat,Emp_Name,Cost_Center_ID
+John,Doe,john.doe@acme.com,1234567890,2024-01-15,Active,John Doe,CC-101
+Jane,Smith,JANE.SMITH@ACME.COM,0987654321,02/15/2024,Active,Jane Smith,CC-102
+John,Doe,john.doe@acme.com,1234567890,2024-01-15,Active,John Doe,CC-101
+Alice,Wong,,5551234567,2024-03-01,Active,Alice Wong,CC-103
+Bob,Miller,bob.m@acme.com,5559876543,invalid-date,Active,Bob Miller,CC-104
+Charlie,Davis,charlie@acme.com,5558889999,2024-05-01,,Charlie Davis,CC-105
