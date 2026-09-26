@@ -1,0 +1,27 @@
+Enterprise HCM Data Agent: Architecture & Approach
+Author: Vivek Taral
+
+The Approach: Hybrid Deterministic & Probabilistic Execution
+Traditional data migrations are rigid, failing when source files have unexpected headers. Fully LLM-driven migrations are unpredictable and prone to hallucinating data transformations (e.g., silently altering phone numbers).
+
+My approach bridges this gap using a hybrid architecture. I restricted the AI's probabilistic reasoning strictly to the metadata layer (semantic column mapping). Once the mapping contract is finalized—either autonomously or via human intervention—the actual data execution layer (cleaning, deduplication, validation, and API uploading) is handled by deterministic, auditable Python (pandas). This ensures zero data loss, strict schema compliance, and computational efficiency, as the LLM never touches the raw row data.
+
+The Escalation Boundary: What the Agent Handles vs. Escalates
+The core engineering challenge in an autonomous agent is knowing when to ask for help. I implemented a Multi-Signal Confidence Engine to dictate this boundary.
+
+The agent handles decisions autonomously only if a mapping passes two strict mathematical thresholds:
+
+Absolute Confidence Threshold (> 85%): The LLM must be highly confident that the source field semantically matches the target schema definition.
+
+Margin of Victory (> 15%): The top candidate must beat the second-best candidate by at least 15%. If ID scores 48% for employee_id and 45% for customer_id, the agent recognizes ambiguity, despite having a "top" choice.
+
+If either condition fails, the agent immediately pushes the context to a Dead Letter Escalation Queue. It halts the pipeline and surfaces the ambiguity to the Human-in-the-Loop Review UI. This guarantees that ambiguous decisions are never forced into the target database.
+
+What I Would Build Next
+To scale this MVP into a production enterprise platform, I would prioritize three architectural upgrades:
+
+Microservice Decoupling: Break the Gradio monolith into a stateless FastAPI backend and a React/TypeScript frontend to support concurrent consultant sessions.
+
+Persistent Audit Database: Replace the in-memory Python state arrays with a PostgreSQL database. Capturing the granular, row-level JSON audit trail in a relational database is critical for SOC2 compliance and rollbacks.
+
+Vector Embeddings for Schema Matching: For highly complex schemas (e.g., 200+ fields), I would replace the LLM prompt with a Retrieval-Augmented Generation (RAG) vector search to match source column definitions to target schema dictionaries, reducing token costs and improving mapping latency.
