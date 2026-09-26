@@ -1,6 +1,0 @@
-hcm-data-agent/
-│
-├── app.py               # The complete Gradio application and ETL logic
-├── requirements.txt     # pandas, gradio, openpyxl
-├── sample_data.csv      # Messy test data for the evaluator to use
-└── README.md            # Setup and architecture documentation
